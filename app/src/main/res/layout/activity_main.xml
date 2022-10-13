@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="50dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/flashcard_question"
+        android:layout_width="364dp"
+        android:layout_height="359dp"
+        android:background="@drawable/card_bg"
+        android:elevation="20dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:text="@string/questionOriginal"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/flashcard_answer"
+        android:layout_width="364dp"
+        android:layout_height="359dp"
+        android:layout_below="@id/flashcard_question"
+        android:layout_alignTop="@id/flashcard_question"
+        android:background="@drawable/card_blue"
+        android:elevation="20dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:text="@string/answerOriginal"
+        android:textColor="@color/fgs"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/answer_one"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/flashcard_question"
+        android:layout_alignStart="@id/flashcard_question"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/card_bg2"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:text="@string/answerOne"
+        android:textAlignment="center"
+        android:textSize="8pt" />
+
+    <TextView
+        android:id="@+id/answer_two"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/flashcard_question"
+        android:layout_alignEnd="@id/flashcard_question"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/card_bg2"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:text="@string/answerTwo"
+        android:textAlignment="center"
+        android:textSize="8pt" />
+
+    <TextView
+        android:id="@+id/answer_three"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/flashcard_question"
+        android:layout_alignStart="@id/flashcard_question"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/card_bg2"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:text="@string/answerThree"
+        android:textAlignment="center"
+        android:textSize="8pt" />
+
+    <TextView
+        android:id="@+id/answer_four"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/flashcard_question"
+        android:layout_marginTop="110dp"
+        android:layout_alignEnd="@id/flashcard_question"
+        android:background="@drawable/card_bg2"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:text="@string/answerFour"
+        android:textAlignment="center"
+        android:textSize="8pt" />
+
+    <ImageButton
+        android:id="@+id/invisible"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/answer_four"
+        android:layout_marginTop="7dp"
+        android:layout_alignStart="@id/flashcard_question"
+        android:backgroundTint="@color/fgs"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/invisible" />
+
+    <ImageButton
+        android:id="@+id/visibility"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/answer_four"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="7dp"
+        android:backgroundTint="@color/fgs"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:scaleType="fitCenter"
+        android:layout_alignStart="@id/flashcard_question"
+        app:srcCompat="@drawable/visibility" />
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/answer_four"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="9dp"
+        android:gravity="center"
+        android:text="@string/reset"
+        android:textColor="@color/white" />
+
+    <ImageButton
+        android:id="@+id/add"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/answer_four"
+        android:layout_alignEnd="@id/answer_four"
+        android:layout_alignTop="@id/invisible"
+        android:backgroundTint="@color/fgs"
+        android:elevation="5dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/add_button" />
+
+    <ImageButton
+        android:id="@+id/edit"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/answer_four"
+        android:layout_alignTop="@id/visibility"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="0dp"
+        android:backgroundTint="@color/fgs"
+        android:elevation="5dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
+        android:id="@+id/next"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/flashcard_answer"
+        android:backgroundTint="@color/fgs"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:scaleType="fitCenter"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/next" />
+
+
+</RelativeLayout>

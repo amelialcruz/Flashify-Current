@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/Flashify" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Flashify-Working" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Flashify/Flasify-App" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/Flashify-App" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/gradle/Flashify-IP" vcs="Git" />
+  </component>
+</project>

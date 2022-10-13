@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Flashify</string>
+    <string name="questionOriginal">Who was the first human in space?</string>
+    <string name="answerOriginal">Yuri Gagarin</string>
+    <string name="answerOne">Neil Armstrong</string>
+    <string name="answerTwo">Buzz Aldrin</string>
+    <string name="answerThree">Yuri Gagarin</string>
+    <string name="answerFour">John Glenn</string>
+    <string name="reset">Reset</string>
+    <string name="enter_question">Enter question</string>
+    <string name="enter_answer">Enter answer</string>
+    <string name="addNew">Add new flashcard:</string>
+    <string name="multi1">Enter multiple choice one</string>
+    <string name="multi2">Enter multiple choice two</string>
+    <string name="multi3">Enter multiple choice three</string>
+    <string name="multi4">Enter multiple choice four</string>
+    <string name="addMulti">Add multiple choice options:</string>
+</resources>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="50dp"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    tools:context=".AddCardActivity">
+
+    <ImageButton
+        android:id="@+id/cancel"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/fgs"
+        android:elevation="5dp"
+        android:scaleType="fitCenter"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/cancel" />
+
+    <EditText
+        android:id="@+id/question_input"
+        android:layout_width="301dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cancel"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:hint="@string/enter_question"
+        android:inputType="textPersonName"
+        android:elevation="0dp"/>
+
+    <EditText
+        android:id="@+id/answer_input"
+        android:layout_width="301dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/question_input"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/enter_answer"
+        android:inputType="textPersonName"
+        android:elevation="0dp"/>
+
+    <TextView
+        android:id="@+id/addTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/cancel"
+        android:text="@string/addNew"
+        android:textColor="@color/fgs"
+        android:textStyle="bold"
+        android:textSize="22sp"/>
+
+    <ImageButton
+        android:id="@+id/saveAnswer"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
+        android:layout_alignStart="@id/answer_input"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/four"
+        android:backgroundTint="@color/fgs"
+        android:elevation="5dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/save_white" />
+
+    <EditText
+        android:id="@+id/one"
+        android:layout_width="301dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addChoices"
+        android:layout_marginTop="50dp"
+        android:elevation="0dp"
+        android:ems="10"
+        android:hint="@string/multi1"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/two"
+        android:layout_width="301dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/one"
+        android:layout_marginTop="15dp"
+        android:elevation="0dp"
+        android:ems="10"
+        android:hint="@string/multi2"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/three"
+        android:layout_width="301dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/two"
+        android:layout_marginTop="15dp"
+        android:elevation="0dp"
+        android:ems="10"
+        android:hint="@string/multi3"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/four"
+        android:layout_width="301dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/three"
+        android:layout_marginTop="15dp"
+        android:elevation="0dp"
+        android:ems="10"
+        android:hint="@string/multi4"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/addChoices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/answer_input"
+        android:layout_marginTop="100dp"
+        android:text="@string/addMulti"
+        android:textColor="@color/fgs"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
