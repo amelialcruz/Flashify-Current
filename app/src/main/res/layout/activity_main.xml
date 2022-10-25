@@ -146,7 +146,7 @@
         android:layout_height="50dp"
         android:layout_below="@id/answer_four"
         android:layout_alignTop="@id/visibility"
-        android:layout_marginLeft="280dp"
+        android:layout_marginStart="275dp"
         android:layout_marginTop="0dp"
         android:backgroundTint="@color/fgs"
         android:elevation="5dp"
@@ -164,6 +164,21 @@
         android:scaleType="fitCenter"
         android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/next" />
+
+    <ImageButton
+        android:id="@+id/trash"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/answer_four"
+        android:layout_alignStart="@id/flashcard_question"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="7dp"
+        android:backgroundTint="@color/fgs"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/trash" />
 
 
 </RelativeLayout>

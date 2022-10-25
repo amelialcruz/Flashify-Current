@@ -2,22 +2,30 @@ package com.example.flashify
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
-import android.media.Image
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
-import android.view.Gravity
 import android.view.View
+import android.view.ViewAnimationUtils
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+//import android.view.animation.Animation
+//import android.view.animation.AnimationUtils.loadAnimation
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+//import com.google.android.material.animation.AnimationUtils
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
+import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     lateinit var flashcardDatabase: FlashcardDatabase
     var allFlashcards = mutableListOf<Flashcard>()
+    var countDownTimer: CountDownTimer? = null
 
+    @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,7 +52,10 @@ class MainActivity : AppCompatActivity() {
         val newCard = findViewById<ImageButton>(R.id.add)
         val editCard = findViewById<ImageButton>(R.id.edit)
         val nextCard = findViewById<ImageButton>(R.id.next)
+        val deleteCard = findViewById<ImageButton>(R.id.trash)
         var currentCardDisplayedIndex = 0
+        val leftOutAnim = AnimationUtils.loadAnimation(this, R.anim.left_in)
+        val rightInAnim = AnimationUtils.loadAnimation(this, R.anim.right_in)
 
         //data retrieval from AddCardActivity, inputting data into flashcard
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -98,8 +109,10 @@ class MainActivity : AppCompatActivity() {
         newCard.setOnClickListener {
             val intent = Intent(this, AddCardActivity::class.java)
             resultLauncher.launch(intent)
+            overridePendingTransition(R.anim.right_in, R.anim.left_in)
         }
 
+        //edit button
         editCard.setOnClickListener {
             val intent = Intent(this, AddCardActivity::class.java)
             intent.putExtra("stringKey1", findViewById<TextView>(R.id.flashcard_question).text.toString());
@@ -109,6 +122,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("stringKey5", findViewById<TextView>(R.id.answer_three).text.toString());
             intent.putExtra("stringKey6", findViewById<TextView>(R.id.answer_four).text.toString());
             resultLauncher.launch(intent)
+            overridePendingTransition(R.anim.right_in, R.anim.left_in)
         }
 
         //setting visible icon to not display at beginning
@@ -119,8 +133,31 @@ class MainActivity : AppCompatActivity() {
 
         //setting answer to display when question clicked, and hide question
         flashcardQuestion.setOnClickListener {
+
+            val answerSideView = findViewById<View>(R.id.flashcard_answer)
+
+            // get the center for the clipping circle
+            val cx = answerSideView.width / 2
+            val cy = answerSideView.height / 2
+
+            // get the final radius for the clipping circle
+
+            // get the final radius for the clipping circle
+            val finalRadius = Math.hypot(cx.toDouble(), cy.toDouble()).toFloat()
+
+            // create the animator for this view (the start radius is zero)
+
+            // create the animator for this view (the start radius is zero)
+            val anim = ViewAnimationUtils.createCircularReveal(answerSideView, cx, cy, 0f, finalRadius)
+
+            // hide the question and show the answer to prepare for playing the animation!
+
+            // hide the question and show the answer to prepare for playing the animation!
             flashcardQuestion.visibility = View.INVISIBLE
             flashcardAnswer.visibility = View.VISIBLE
+
+            anim.duration = 750
+            anim.start()
         }
 
         //setting question to display when answer clicked, and hide answer again
@@ -190,6 +227,7 @@ class MainActivity : AppCompatActivity() {
 
         //next button
         nextCard.setOnClickListener {
+
             // do not proceed to next if no other cards exist
             if (allFlashcards.size == 0) {
                 // return here, so that the rest of the code in this onClickListener doesn't execute
@@ -209,7 +247,62 @@ class MainActivity : AppCompatActivity() {
                 currentCardDisplayedIndex = 0
             }
 
+            //flashcard animation
+            findViewById<View>(R.id.flashcard_question).startAnimation(leftOutAnim)
+
             // set the question and answer TextViews with data from the database
+            Timer().schedule(500) {
+                allFlashcards = flashcardDatabase.getAllCards().toMutableList()
+                val (question, answer) = allFlashcards[currentCardDisplayedIndex]
+                flashcardAnswer.text = answer
+                flashcardQuestion.text = question
+            }
+
+
+        }
+
+        //left animation listeners
+        leftOutAnim.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {
+                // this method is called when the animation first starts
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                // this method is called when the animation is finished playing
+                findViewById<View>(R.id.flashcard_question).startAnimation(rightInAnim)
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+                // we don't need to worry about this method
+            }
+        })
+
+        //delete button
+        deleteCard.setOnClickListener {
+            //removing the current displayed card
+            val flashcardQuestionToDelete = flashcardQuestion.text.toString()
+            flashcardDatabase.deleteCard(flashcardQuestionToDelete)
+
+            // do not proceed to next if no other cards exist
+            if (allFlashcards.size == 0) {
+                // return here, so that the rest of the code in this onClickListener doesn't execute
+                return@setOnClickListener
+            }
+
+            // subtract our pointer index so we can show the previous card
+            currentCardDisplayedIndex--
+
+            // make sure we don't get an IndexOutOfBoundsError if we are viewing the last indexed card in our list
+            if(currentCardDisplayedIndex >= allFlashcards.size) {
+                Snackbar.make(
+                    findViewById<TextView>(R.id.flashcard_question), // This should be the TextView for displaying your flashcard question
+                    "End of flashcards reached, going back to starting flashcard.",
+                    Snackbar.LENGTH_SHORT)
+                    .show()
+                currentCardDisplayedIndex = 0
+            }
+
+            // set the question and answer TextViews with data from the database (previous flashcard)
             allFlashcards = flashcardDatabase.getAllCards().toMutableList()
             val (question, answer) = allFlashcards[currentCardDisplayedIndex]
 
